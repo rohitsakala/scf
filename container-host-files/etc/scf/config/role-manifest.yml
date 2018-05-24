@@ -1338,6 +1338,8 @@ roles:
     release_name: diego
   - name: garden
     release_name: garden-runc
+  - name: groot-btrfs
+    release_name: groot-btrfs
   - name: cflinuxfs2-rootfs-setup
     release_name: cflinuxfs2
   - name: opensuse42-rootfs-setup
