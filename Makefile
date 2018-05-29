@@ -217,7 +217,7 @@ releases: \
 	dotnet-core-buildpack-release \
 	garden-release \
 	go-buildpack-release \
-	groot-btrfs \
+	groot-btrfs-release \
 	java-buildpack-release \
 	loggregator-release \
 	mysql-release \

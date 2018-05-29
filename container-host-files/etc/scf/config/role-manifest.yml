@@ -2750,20 +2750,16 @@ configuration:
     properties.garden.docker_registry_endpoint: ((GARDEN_DOCKER_REGISTRY))((^GARDEN_DOCKER_REGISTRY))null((/GARDEN_DOCKER_REGISTRY))
     properties.garden.http_proxy: '"((HTTP_PROXY))"'
     properties.garden.https_proxy: '"((HTTPS_PROXY))"'
-
     properties.garden.image_plugin: "((^GARDEN_USE_BTRFS))/var/vcap/packages/groot-btrfs/bin/groot-btrfs((/GARDEN_USE_BTRFS))"
-    properties.garden.image_plugin_extra_args: ((^GARDEN_USE_BTRFS))["--store", "/var/vcap/data/grootfs/store/unprivileged", "--drax-bin=drax", "--btrfs-progs-path", "/var/vca/packages/btrfs-progs/bin/"]((/GARDEN_USE_BTRFS))
+    properties.garden.image_plugin_extra_args: ((^GARDEN_USE_BTRFS))["--store-path", "/var/vcap/data/grootfs/store/unprivileged", "--drax-bin=/var/vcap/packages/groot-btrfs/bin/drax", "--btrfs-progs-path", "/var/vcap/packages/btrfs-progs/bin/"]((/GARDEN_USE_BTRFS))
     properties.garden.insecure_docker_registry_list: '[((GARDEN_INSECURE_DOCKER_REGISTRIES))]'
     properties.garden.log_level: '"((GO_LOG_LEVEL))((#LOG_LEVEL))((/LOG_LEVEL))"'
     properties.garden.network_mtu: ((DIEGO_CELL_NETWORK_MTU))
     properties.garden.network_pool: '"((DIEGO_CELL_SUBNET))"'
     properties.garden.no_proxy: '"((NO_PROXY))"'
     properties.garden.persistent_image_list: '["/var/vcap/packages/((SUSE_STACK_DIRNAME))/rootfs.tar", "/var/vcap/packages/cflinuxfs2/rootfs.tar"]'
-
-    #properties.grootfs.driver: '((GARDEN_ROOTFS_DRIVER))'
     properties.garden.privileged_image_plugin: "((^GARDEN_USE_BTRFS))/var/vcap/packages/groot-btrfs/bin/groot-btrfs((/GARDEN_USE_BTRFS))"
-    properties.garden.privileged_image_plugin_extra_args: ((^GARDEN_USE_BTRFS))["--store", "/var/vcap/data/grootfs/store/privileged", "--drax-bin=drax", "--btrfs-progs-path", "/var/vca/packages/btrfs-progs/bin/"]((/GARDEN_USE_BTRFS))
-
+    properties.garden.privileged_image_plugin_extra_args: ((^GARDEN_USE_BTRFS))["--store-path", "/var/vcap/data/grootfs/store/privileged", "--drax-bin=/var/vcap/packages/groot-btrfs/bin/drax", "--btrfs-progs-path", "/var/vcap/packages/btrfs-progs/bin/"]((/GARDEN_USE_BTRFS))
     properties.grootfs.insecure_docker_registry_list: '[((GARDEN_INSECURE_DOCKER_REGISTRIES))]'
     # How to reach the capi.cc_uploader
     properties.internal_hostname: cc-uploader.((KUBE_SERVICE_DOMAIN_SUFFIX))
