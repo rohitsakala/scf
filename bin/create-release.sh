@@ -138,7 +138,7 @@ if test -n "$(find "${ROOT}/${release_path}/blobs/" -type l 2>/dev/null)"; then
     ${proxies} \
     --env MAVEN_OPTS="$MO" \
     --env JAVA_OPTS="$MO" \
-    "splatform/bosh-cli:${BOSH_CLI_VERSION:-latest}" \
+    rohitsakala/bosh-cli:z390x \
     /usr/local/bin/bosh.sh \
         "$(id -u)" "$(id -g)" /bosh-cache reset-release --dir="${ROOT}/${release_path}"
 fi
@@ -153,7 +153,7 @@ docker run \
     ${proxies} \
     --env MAVEN_OPTS="$MO" \
     --env JAVA_OPTS="$MO" \
-    "splatform/bosh-cli:${BOSH_CLI_VERSION:-latest}" \
+    rohitsakala/bosh-cli:z390x \
     /usr/local/bin/bosh.sh \
         "$(id -u)" "$(id -g)" /bosh-cache create-release --dir="${ROOT}/${release_path}" --force --name "${release_name}"
 

@@ -1,0 +1,95 @@
+diff --git a/bin/create-release.sh b/bin/create-release.sh
+index 57a95c26..f5da8e75 100755
+--- a/bin/create-release.sh
++++ b/bin/create-release.sh
+@@ -138,7 +138,7 @@ if test -n "$(find "${ROOT}/${release_path}/blobs/" -type l 2>/dev/null)"; then
+     ${proxies} \
+     --env MAVEN_OPTS="$MO" \
+     --env JAVA_OPTS="$MO" \
+-    "splatform/bosh-cli:${BOSH_CLI_VERSION:-latest}" \
++    rohitsakala/bosh-cli:z390x \
+     /usr/local/bin/bosh.sh \
+         "$(id -u)" "$(id -g)" /bosh-cache reset-release --dir="${ROOT}/${release_path}"
+ fi
+@@ -153,7 +153,7 @@ docker run \
+     ${proxies} \
+     --env MAVEN_OPTS="$MO" \
+     --env JAVA_OPTS="$MO" \
+-    "splatform/bosh-cli:${BOSH_CLI_VERSION:-latest}" \
++    rohitsakala/bosh-cli:z390x \
+     /usr/local/bin/bosh.sh \
+         "$(id -u)" "$(id -g)" /bosh-cache create-release --dir="${ROOT}/${release_path}" --force --name "${release_name}"
+ 
+diff --git a/bin/dev/install_tools.sh b/bin/dev/install_tools.sh
+index d6f8e5b3..600a9c50 100755
+--- a/bin/dev/install_tools.sh
++++ b/bin/dev/install_tools.sh
+@@ -20,17 +20,17 @@ mkdir -p "${SCF_BIN_DIR}"
+ export SCF_BIN_DIR="$(unset CDPATH ; cd "${SCF_BIN_DIR}" && pwd)"
+ 
+ echo "Fetching fissile $fissile_url ..."
+-wget -q "$fissile_url"   -O - | tar xz --to-stdout fissile > "${FISSILE_BINARY}.real"
++#wget -q "$fissile_url"   -O - | tar xz --to-stdout fissile > "${FISSILE_BINARY}.real"
+ 
+ echo "Fetching stampy $stampy_url ..."
+-wget -q "$stampy_url"   -O - | tar xz -C "${SCF_BIN_DIR}" stampy
++#wget -q "$stampy_url"   -O - | tar xz -C "${SCF_BIN_DIR}" stampy
+ 
+ echo "Making binaries executable ..."
+-chmod a+x "${FISSILE_BINARY}.real"
+-chmod a+x "${SCF_BIN_DIR}/stampy"
++#chmod a+x "${FISSILE_BINARY}.real"
++#chmod a+x "${SCF_BIN_DIR}/stampy"
+ 
+ # Install wrapper script that sets FISSILE_TAG_EXTRA to current commit id
+-cp bin/fissile "${FISSILE_BINARY}"
++#cp bin/fissile "${FISSILE_BINARY}"
+ 
+ echo "Installed: $("${FISSILE_BINARY}" version)"
+ 
+diff --git a/make/compile b/make/compile
+index 690a4514..86eee7fa 100755
+--- a/make/compile
++++ b/make/compile
+@@ -146,7 +146,7 @@ case ${COMMAND} in
+         restore
+ 
+         echo Please allow a long time for mariadb to compile
+-        fissile build packages
++        fissile build packages --only-releases capi
+ 
+         cache
+         ;;
+diff --git a/src/capi-release b/src/capi-release
+--- a/src/capi-release
++++ b/src/capi-release
+@@ -1 +1 @@
+-Subproject commit 970d70b11b632f0d72f96bbe5c231a16c80739d4
++Subproject commit 970d70b11b632f0d72f96bbe5c231a16c80739d4-dirty
+diff --git a/src/cf-opensuse42-release b/src/cf-opensuse42-release
+index 054a0cac..25c710db 160000
+--- a/src/cf-opensuse42-release
++++ b/src/cf-opensuse42-release
+@@ -1 +1 @@
+-Subproject commit 054a0cac003ea4abe5a1c54bb69d2293afb50159
++Subproject commit 25c710db7536f2082e3b4aa1bcd9daa424744092
+diff --git a/src/cf-sle12-release b/src/cf-sle12-release
+index faf946c5..44812b17 160000
+--- a/src/cf-sle12-release
++++ b/src/cf-sle12-release
+@@ -1 +1 @@
+-Subproject commit faf946c508f994cf8f937778d302a58db0c1be2c
++Subproject commit 44812b173723b907cc262db45638ba027d180914
+diff --git a/src/garden-runc-release b/src/garden-runc-release
+--- a/src/garden-runc-release
++++ b/src/garden-runc-release
+@@ -1 +1 @@
+-Subproject commit 0926be8f41f44df5f86a784a9b44c3060e279de5
++Subproject commit 0926be8f41f44df5f86a784a9b44c3060e279de5-dirty
+diff --git a/src/uaa-fissile-release b/src/uaa-fissile-release
+index 571836ac..981575fd 160000
+--- a/src/uaa-fissile-release
++++ b/src/uaa-fissile-release
+@@ -1 +1 @@
+-Subproject commit 571836ac17c73b6075550d522ce785b773964c35
++Subproject commit 981575fdad445949d1893acb6daec6b8ed848c0c-dirty

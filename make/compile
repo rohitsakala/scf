@@ -146,7 +146,7 @@ case ${COMMAND} in
         restore
 
         echo Please allow a long time for mariadb to compile
-        fissile build packages
+        fissile build packages --only-releases capi
 
         cache
         ;;
